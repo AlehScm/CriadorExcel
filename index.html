@@ -1,0 +1,36 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Alunos</h1>
+        <form id="registrationForm">
+            <div id="formContainer">
+                <div class="input-group">
+                    <input type="text" placeholder="Nome" required>
+                    <input type="tel" placeholder="Telefone" required>
+                    <input type="email" placeholder="Email" required>
+                    <select required>
+                        <option value="">Selecione o curso</option>
+                        <option>Engenharia de Software</option>
+                        <option>Ciência de Dados</option>
+                        <option>Design Gráfico</option>
+                        <option>Administração</option>
+                    </select>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="button" class="add-btn" id="addPerson">+ Adicionar Pessoa</button>
+                <button type="submit">Gerar Excel</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
