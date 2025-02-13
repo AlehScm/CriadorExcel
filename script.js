@@ -20,10 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="email" placeholder="Email" required>
                 <select required>
                     <option value="">Selecione o curso</option>
-                    <option>Engenharia de Software</option>
-                    <option>Ciência de Dados</option>
-                    <option>Design Gráfico</option>
-                    <option>Administração</option>
+                        <option>Implantodontia e Protese</option>
+                        <option>Ortodontia</option>
+                        <option>HOF</option>
+                        <option>Endodontia</option>
+                        <option>Alinhadores</option>
+                        <option>Cirurgia Bucal</option>
+                        <option>Ortodontia Interceptativa</option>
+                        <option>Dentista com Enfase em Estetica</option>
+                        <option>Mini Implantes</option>
+                        <option>Escultura Dental</option>
+                        <option>Tratamento Simplificado da Classe II</option>
+                        <option>Biomateriais para Implantodontia</option>
+                        <option>Descomplicando a Endodontia</option>
                 </select>
             `;
             this.formContainer.appendChild(newGroup);
