@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     constructor() {
       this.formContainer = document.getElementById('formContainer');
       this.addButton = document.getElementById('addPerson');
-      this.SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJW7zoOyJNyDyCb7NnuTKPyoyA0-YjeyHx32dYuWtFCy7fzELvtl0g75wrBJAdtj8c/exec'; // URL correta
+      this.SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_hXea1Lq8QM07pskuwlLF7KmfMHMOnT3aNRLTgmLm-NSGJEanzTgHVjSnhkypIR7V/exec'; // URL correta
       this.initializeEvents();
     }
 
@@ -39,30 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
       this.formContainer.appendChild(newGroup);
     }
 
-    async handleSubmit(e) {
+  async handleSubmit(e) {
       e.preventDefault();
       const data = this.collectData();
       
       try {
-        const response = await fetch(this.SCRIPT_URL, {mode: "no-cors"}, {
+        const response = await fetch(this.SCRIPT_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ data }), // Envia todos os registros
+          body: JSON.stringify({ data }),
+          mode: 'no-cors' // Ignora CORS (solução emergencial)
         });
 
-        const result = await response.json();
-        if (response.ok) {
-          alert(result.message);
-          this.formContainer.innerHTML = '';
-          this.addNewPerson();
-        } else {
-          throw new Error(result.message);
-        }
+        // Como o modo 'no-cors' bloqueia o acesso à resposta, assuma sucesso
+        alert('Dados enviados! Verifique a planilha.');
+        this.formContainer.innerHTML = '';
+        this.addNewPerson();
+
       } catch (error) {
         console.error('Erro:', error);
-        alert(error.message || 'Erro ao salvar!');
+        alert('Erro ao salvar!');
       }
     }
+  }
 
     collectData() {
       return Array.from(document.getElementsByClassName('input-group')).map(group => {
