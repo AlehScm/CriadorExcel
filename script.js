@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     constructor() {
       this.formContainer = document.getElementById('formContainer');
       this.addButton = document.getElementById('addPerson');
-      this.SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_hXea1Lq8QM07pskuwlLF7KmfMHMOnT3aNRLTgmLm-NSGJEanzTgHVjSnhkypIR7V/exec'; // URL correta
+      this.SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_hXea1Lq8QM07pskuwlLF7KmfMHMOnT3aNRLTgmLm-NSGJEanzTgHVjSnhkypIR7V/exec';
       this.initializeEvents();
     }
 
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
           curso: select.value
         };
       });
-    }
+    } // <--- Fechamento correto do collectData()
 
-    async handleSubmit(e) {
+    async handleSubmit(e) { // <--- Agora está dentro da classe!
       e.preventDefault();
       const data = this.collectData();
 
@@ -61,10 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ data }),
-          mode: 'no-cors' // Ignora CORS (solução emergencial)
+          mode: 'no-cors'
         });
 
-        // Como o modo 'no-cors' bloqueia o acesso à resposta, assumimos sucesso
         alert('Dados enviados! Verifique a planilha.');
         this.formContainer.innerHTML = '';
         this.addNewPerson();
