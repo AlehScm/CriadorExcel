@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor() {
             this.formContainer = document.getElementById('formContainer');
             this.addButton = document.getElementById('addPerson');
-            this.SCRIPT_URL = 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbzUKpz-1ae4aDtAyumEHbHeX3an5XDtekHf7rfwqAeLzy49361tbyN7uAQpbZ94iEI/exec';
+            this.SCRIPT_URL = 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbzWXknzFj0H9wJgoP2de9o2Bd2WVzPDSzF3b-d4BGxecx7LZ7uNhN8QE6wmahn6De0/exec';
             this.initializeEvents();
         }
 
@@ -40,29 +40,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         async handleSubmit(e) {
-              e.preventDefault();
-              const data = this.collectData();
+            e.preventDefault();
+            const data = this.collectData();
             
-              try {
-                // Converte os dados para JSON e codifica para query string
-                const queryString = `data=${encodeURIComponent(JSON.stringify(data[0]))}`;
-                const url = `${this.SCRIPT_URL}?${queryString}`;
-            
-                // Faz a requisição GET
-                const response = await fetch(url, { method: 'GET' });
-            
+            try {
+                const response = await fetch(this.SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ data }),
+                });
+
                 if (response.ok) {
-                  alert('Dados salvos com sucesso!');
-                  this.formContainer.innerHTML = ''; // Limpa o formulário
-                  this.addNewPerson(); // Adiciona novo grupo vazio
+                    alert('Dados salvos com sucesso!');
+                    this.formContainer.innerHTML = ''; // Limpa o formulário
+                    this.addNewPerson(); // Adiciona novo grupo vazio
                 } else {
-                  throw new Error('Falha no envio');
+                    throw new Error('Falha no envio');
                 }
-              } catch (error) {
+            } catch (error) {
                 console.error('Erro:', error);
                 alert('Erro ao salvar dados!');
-              }
             }
+        }
+
+        collectData() {
+            const groups = Array.from(document.getElementsByClassName('input-group'));
+            return groups.map(group => {
+                const inputs = group.getElementsByTagName('input');
+                const select = group.getElementsByTagName('select')[0];
+                return {
+                    nome: inputs[0].value,
+                    telefone: inputs[1].value,
+                    email: inputs[2].value,
+                    curso: select.value
+                };
+            });
+        }
+    }
 
         collectData() {
             const groups = Array.from(document.getElementsByClassName('input-group'));
