@@ -38,25 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       this.formContainer.appendChild(newGroup);
     }
-    
+
     collectData() {
-          return Array.from(document.getElementsByClassName('input-group')).map(group => {
-            const inputs = group.getElementsByTagName('input');
-            const select = group.querySelector('select');
-            return {
-              nome: inputs[0].value,
-              telefone: inputs[1].value,
-              email: inputs[2].value,
-              curso: select.value
-            };
-          });
-        }
-      }
+      return Array.from(document.getElementsByClassName('input-group')).map(group => {
+        const inputs = group.getElementsByTagName('input');
+        const select = group.querySelector('select');
+        return {
+          nome: inputs[0].value,
+          telefone: inputs[1].value,
+          email: inputs[2].value,
+          curso: select.value
+        };
+      });
+    }
 
     async handleSubmit(e) {
       e.preventDefault();
       const data = this.collectData();
-      
+
       try {
         const response = await fetch(this.SCRIPT_URL, {
           method: 'POST',
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
           mode: 'no-cors' // Ignora CORS (solução emergencial)
         });
 
-        // Como o modo 'no-cors' bloqueia o acesso à resposta, assuma sucesso
+        // Como o modo 'no-cors' bloqueia o acesso à resposta, assumimos sucesso
         alert('Dados enviados! Verifique a planilha.');
         this.formContainer.innerHTML = '';
         this.addNewPerson();
