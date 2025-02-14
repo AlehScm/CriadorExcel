@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     constructor() {
       this.formContainer = document.getElementById('formContainer');
       this.addButton = document.getElementById('addPerson');
-      this.SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpViPPIN1-KZh-a3c5-LLgmwVn8PMvDnykCJTBVSvzLJPtuNWxYfhDRZkMRWsa-Ww/exec'; // URL correta
+      this.SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJW7zoOyJNyDyCb7NnuTKPyoyA0-YjeyHx32dYuWtFCy7fzELvtl0g75wrBJAdtj8c/exec'; // URL correta
       this.initializeEvents();
     }
 
