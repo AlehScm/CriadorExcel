@@ -38,8 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       this.formContainer.appendChild(newGroup);
     }
+    
+    collectData() {
+          return Array.from(document.getElementsByClassName('input-group')).map(group => {
+            const inputs = group.getElementsByTagName('input');
+            const select = group.querySelector('select');
+            return {
+              nome: inputs[0].value,
+              telefone: inputs[1].value,
+              email: inputs[2].value,
+              curso: select.value
+            };
+          });
+        }
+      }
 
-  async handleSubmit(e) {
+    async handleSubmit(e) {
       e.preventDefault();
       const data = this.collectData();
       
@@ -60,20 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Erro:', error);
         alert('Erro ao salvar!');
       }
-    }
-  }
-
-    collectData() {
-      return Array.from(document.getElementsByClassName('input-group')).map(group => {
-        const inputs = group.getElementsByTagName('input');
-        const select = group.querySelector('select');
-        return {
-          nome: inputs[0].value,
-          telefone: inputs[1].value,
-          email: inputs[2].value,
-          curso: select.value
-        };
-      });
     }
   }
 
