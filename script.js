@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor() {
             this.formContainer = document.getElementById('formContainer');
             this.addButton = document.getElementById('addPerson');
+            this.SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5UR5z88vJOgSLXMWm-ohlF5xCNgravzyYFcaAo-hP7PIjFTkbO7qkT6DmGtqQPDs/exec';
             this.initializeEvents();
         }
 
@@ -38,10 +39,30 @@ document.addEventListener('DOMContentLoaded', () => {
             this.formContainer.appendChild(newGroup);
         }
 
-        handleSubmit(e) {
+        async handleSubmit(e) {
             e.preventDefault();
             const data = this.collectData();
-            this.generateExcel(data);
+            
+            try {
+                const response = await fetch(this.SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({data}),
+                });
+
+                if (response.ok) {
+                    alert('Dados salvos com sucesso!');
+                    this.formContainer.innerHTML = ''; // Limpa o formulário
+                    this.addNewPerson(); // Adiciona novo grupo vazio
+                } else {
+                    throw new Error('Falha no envio');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao salvar dados!');
+            }
         }
 
         collectData() {
@@ -58,13 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        generateExcel(data) {
-            const ws = XLSX.utils.json_to_sheet(data);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Alunos");
-            XLSX.writeFile(wb, 'cadastro_alunos.xlsx');
-        }
-    }
-
     new FormManager();
 });
+
+
