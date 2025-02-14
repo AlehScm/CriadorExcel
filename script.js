@@ -40,30 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         async handleSubmit(e) {
-            e.preventDefault();
-            const data = this.collectData();
+              e.preventDefault();
+              const data = this.collectData();
             
-            try {
-                const response = await fetch(this.SCRIPT_URL, {mode: "no-cors"}, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ data }),
+              try {
+                const response = await fetch(this.SCRIPT_URL, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ data: data[0] }),
                 });
-
+            
                 if (response.ok) {
-                    alert('Dados salvos com sucesso!');
-                    this.formContainer.innerHTML = ''; // Limpa o formulário
-                    this.addNewPerson(); // Adiciona novo grupo vazio
+                  alert('Dados salvos com sucesso!');
+                  this.formContainer.innerHTML = ''; // Limpa o formulário
+                  this.addNewPerson(); // Adiciona novo grupo vazio
                 } else {
-                    throw new Error('Falha no envio');
+                  throw new Error('Falha no envio');
                 }
-            } catch (error) {
+              } catch (error) {
                 console.error('Erro:', error);
                 alert('Erro ao salvar dados!');
+              }
             }
-        }
         
         collectData() {
             const groups = Array.from(document.getElementsByClassName('input-group'));
