@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = this.collectData();
             
             try {
-                const response = await fetch(this.SCRIPT_URL, {
+                const response = await fetch(this.SCRIPT_URL, {mode: "no-cors"}, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -64,22 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Erro ao salvar dados!');
             }
         }
-
-        collectData() {
-            const groups = Array.from(document.getElementsByClassName('input-group'));
-            return groups.map(group => {
-                const inputs = group.getElementsByTagName('input');
-                const select = group.getElementsByTagName('select')[0];
-                return {
-                    nome: inputs[0].value,
-                    telefone: inputs[1].value,
-                    email: inputs[2].value,
-                    curso: select.value
-                };
-            });
-        }
-    }
-
+        
         collectData() {
             const groups = Array.from(document.getElementsByClassName('input-group'));
             return groups.map(group => {
