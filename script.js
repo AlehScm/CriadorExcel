@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    class FormManager {
-        constructor() {
-            this.formContainer = document.getElementById('formContainer');
-            this.addButton = document.getElementById('addPerson');
-            this.SCRIPT_URL = 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbyGoHg21mTs-hhZk4UGe2wm6Nx18j5HlpiNZjIz3HdUAJy1_wtTC1fnv487KfnaKvI/exec';
-            this.initializeEvents();
-        }
+  class FormManager {
+    constructor() {
+      this.formContainer = document.getElementById('formContainer');
+      this.addButton = document.getElementById('addPerson');
+      this.SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpViPPIN1-KZh-a3c5-LLgmwVn8PMvDnykCJTBVSvzLJPtuNWxYfhDRZkMRWsa-Ww/exec'; // URL correta
+      this.initializeEvents();
+    }
 
     initializeEvents() {
       this.addButton.addEventListener('click', () => this.addNewPerson());
