@@ -21,19 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="email" placeholder="Email" required>
                 <select required>
                     <option value="">Selecione o curso</option>
-                        <option>Implantodontia e Protese</option>
-                        <option>Ortodontia</option>
-                        <option>HOF</option>
-                        <option>Endodontia</option>
-                        <option>Alinhadores</option>
-                        <option>Cirurgia Bucal</option>
-                        <option>Ortodontia Interceptativa</option>
-                        <option>Dentista com Enfase em Estetica</option>
-                        <option>Mini Implantes</option>
-                        <option>Escultura Dental</option>
-                        <option>Tratamento Simplificado da Classe II</option>
-                        <option>Biomateriais para Implantodontia</option>
-                        <option>Descomplicando a Endodontia</option>
+                    <option>Implantodontia e Protese</option>
+                    <option>Ortodontia</option>
+                    <option>HOF</option>
+                    <option>Endodontia</option>
+                    <option>Alinhadores</option>
+                    <option>Cirurgia Bucal</option>
+                    <option>Ortodontia Interceptativa</option>
+                    <option>Dentista com Enfase em Estetica</option>
+                    <option>Mini Implantes</option>
+                    <option>Escultura Dental</option>
+                    <option>Tratamento Simplificado da Classe II</option>
+                    <option>Biomateriais para Implantodontia</option>
+                    <option>Descomplicando a Endodontia</option>
                 </select>
             `;
             this.formContainer.appendChild(newGroup);
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({data}),
+                    body: JSON.stringify({ data }),
                 });
 
                 if (response.ok) {
@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
             });
         }
+    }
 
+    // Inicializa o FormManager
     new FormManager();
 });
-
-
