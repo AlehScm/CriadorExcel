@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = this.collectData();
       
       try {
-        const response = await fetch(this.SCRIPT_URL, {
+        const response = await fetch(this.SCRIPT_URL, {mode: "no-cors"}, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ data }), // Envia todos os registros
