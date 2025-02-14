@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor() {
             this.formContainer = document.getElementById('formContainer');
             this.addButton = document.getElementById('addPerson');
-            this.SCRIPT_URL = 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbx7z79mx3N9Aspu3thze_HQXS5Zsg1R6OSRoSBTxyd4QsxUk7-TPQpx_k211O2tdcg/exec';
+            this.SCRIPT_URL = 'https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbzUKpz-1ae4aDtAyumEHbHeX3an5XDtekHf7rfwqAeLzy49361tbyN7uAQpbZ94iEI/exec';
             this.initializeEvents();
         }
 
